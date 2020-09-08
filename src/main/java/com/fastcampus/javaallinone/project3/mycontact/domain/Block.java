@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class Person {
+public class Block {
 
     @Id
     @GeneratedValue
@@ -22,21 +21,9 @@ public class Person {
     @NonNull
     private String name;
 
-    @NonNull
-    private int age;
+    private String reason;
 
-    private String hobby;
+    private LocalDate startDate;
 
-    @NonNull
-    private String bloodType;
-
-    private LocalDate birthday;
-
-    private String job;
-
-    @ToString.Exclude
-    private String phoneNumber;
-
-    @OneToOne
-    private Block block;
+    private LocalDate endDate;
 }
