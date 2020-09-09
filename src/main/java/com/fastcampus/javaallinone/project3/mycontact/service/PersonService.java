@@ -20,7 +20,7 @@ public class PersonService {
 
     public List<Person> getPeopleExcludeBlocks(){
         List<Person> people = personRepository.findAll();
-        
+
         return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
     }
 }
