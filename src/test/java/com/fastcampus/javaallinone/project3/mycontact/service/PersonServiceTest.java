@@ -46,14 +46,28 @@ class PersonServiceTest {
         personRepository.save(person);
         personRepository.findAll().forEach(System.out::println);
 
-        personRepository.delete(person);
+//        personRepository.delete(person);
+//        personRepository.findAll().forEach(System.out::println);
+//        blockRepository.findAll().forEach(System.out::println);
+
+        person.setBlock(null);
+        personRepository.save(person);
         personRepository.findAll().forEach(System.out::println);
         blockRepository.findAll().forEach(System.out::println);
     }
 
+    @Test
+    void getPerson(){
+        givenPeople();
+
+        Person person = personService.getPerson(3L);
+
+        System.out.println(person);
+    }
+
     private void givenPeople() {
-        givenPerson("martin", 10, "A");
-        givenPerson("david", 9, "B");
+        givenBlockPerson("martin", 10, "A");
+        givenBlockPerson("david", 9, "B");
         givenBlockPerson("dennis", 7, "O");
         givenBlockPerson("martin", 11, "AB");
     }
