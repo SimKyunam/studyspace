@@ -1,6 +1,7 @@
 package com.fastcampus.javaallinone.project3.mycontact.repository;
 
 import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
+import com.fastcampus.javaallinone.project3.mycontact.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -75,13 +76,13 @@ class PersonRepositoryTest {
 
     @Test
     void findByBirthdayBetween(){
-        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 15));
+        givenPerson("martin", 10, "A", LocalDate.of(1991, 8, 30));
         givenPerson("david", 9, "B", LocalDate.of(1992, 7, 10));
         givenPerson("dennis", 8, "O", LocalDate.of(1993, 1, 5));
         givenPerson("sophia", 7, "AB", LocalDate.of(1994, 6, 30));
         givenPerson("benny", 6, "A", LocalDate.of(1995, 8, 30));
 
-        List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991, 8, 1), LocalDate.of(1995, 8, 31));
+        List<Person> result = personRepository.findByMonthOfBirthday(8);
 
         result.forEach(System.out::println);
     }
@@ -92,7 +93,7 @@ class PersonRepositoryTest {
 
     private void givenPerson(String name, int age, String bloodType, LocalDate birthday){
         Person person = new Person(name, age, bloodType);
-        person.setBirthday(birthday);
+        person.setBirthday(new Birthday(birthday));
 
         personRepository.save(person);
     }
