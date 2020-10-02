@@ -1,3 +1,5 @@
+package kr.co.fastcampus.cli;
+
 import lombok.*;
 
 import java.sql.ResultSet;
