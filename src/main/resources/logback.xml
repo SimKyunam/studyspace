@@ -6,6 +6,8 @@
         </encoder>
     </appender>
 
+    <logger name="org.springframework" level="ERROR"/>
+
     <root level="trace">
         <appender-ref ref="STDOUT"/> <!-- Console에 로그를 출력하고자 할 때 사용 -->
     </root>
