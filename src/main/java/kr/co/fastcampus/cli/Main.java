@@ -15,8 +15,7 @@ public class Main {
         logger.info("Hello world!");
 
         ApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
-        System.out.println(context);
-        Dao dao = context.getBean(Dao.class);
+        Dao dao = context.getBean("dao", Dao.class);
         dao.run();
     }
 }
