@@ -4,7 +4,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--
+        [scope] prototype은 new와 같고 default인 singleton은 주소참조
+        bean에 ref에 참조해줄때도 같은 기능 의미로 사용 가능
+    -->
     <bean id="connectionFactory" class="kr.co.fastcampus.cli.ConnectionFactory">
+        <constructor-arg name="driverClass" value="org.h2.Driver"/>
         <constructor-arg name="url" value="jdbc:h2:mem:test"/>
         <constructor-arg name="user" value="sa"/>
         <constructor-arg name="password" value=""/>
