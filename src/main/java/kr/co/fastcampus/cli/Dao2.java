@@ -12,15 +12,15 @@ import java.sql.SQLException;
  * Github : https://github.com/SimKyunam
  */
 @Slf4j
-public class Dao {
+public class Dao2 {
     private Connection connection;
 
-    public Dao(Connection connection) {
+    public Dao2(Connection connection) {
         this.connection = connection;
     }
 
     public void run() throws SQLException {
-         var statement = connection.createStatement();
+        var statement = connection.createStatement();
 
         connection.setAutoCommit(false);
         statement.execute("create table member(id int auto_increment, username varchar(255) not null, password varchar(255) not null, primary key(id))");
@@ -37,5 +37,4 @@ public class Dao {
             log.info(member.toString());
         }
     }
-
 }
