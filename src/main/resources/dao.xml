@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans default-init-method="init" default-destroy-method="destroy"
+        xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -8,7 +9,7 @@
         [scope] prototype은 new와 같고 default인 singleton은 주소참조
         bean에 ref에 참조해줄때도 같은 기능 의미로 사용 가능
     -->
-    <bean id="connectionFactory" class="kr.co.fastcampus.cli.ConnectionFactory" init-method="init">
+    <bean id="connectionFactory" class="kr.co.fastcampus.cli.ConnectionFactory">
         <constructor-arg name="driverClass" value="org.h2.Driver"/>
         <constructor-arg name="url" value="jdbc:h2:mem:test"/>
         <constructor-arg name="user" value="sa"/>
@@ -22,4 +23,6 @@
     <bean id="dao" class="kr.co.fastcampus.cli.Dao">
         <constructor-arg ref="connection"/>
     </bean>
+
+    <bean class="kr.co.fastcampus.cli.A"/>
 </beans>

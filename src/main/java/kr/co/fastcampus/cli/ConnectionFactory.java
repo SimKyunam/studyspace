@@ -42,4 +42,11 @@ public class ConnectionFactory {
         log.info("init");
         this.connection = createConnection();
     }
+
+    public void destroy() throws Exception {
+        log.info("destroy");
+        if(this.connection != null){
+            this.connection.close();
+        }
+    }
 }
