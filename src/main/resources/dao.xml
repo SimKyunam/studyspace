@@ -8,7 +8,10 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config/>
+
     <context:property-placeholder location="/*.properties" />
+
+    <context:component-scan base-package="kr.co.fastcampus.cli"/>
 
     <!--
         [scope] prototype은 new와 같고 default인 singleton은 주소참조
@@ -29,13 +32,5 @@
         <constructor-arg ref="connection"/>
     </bean>
 
-    <bean class="kr.co.fastcampus.cli.A"/>
-
     <bean class="kr.co.fastcampus.cli.AppConfig"/>
-<!--    <bean class="kr.co.fastcampus.cli.B">-->
-<!--        <qualifier value="b1"/>-->
-<!--    </bean>-->
-<!--    <bean class="kr.co.fastcampus.cli.B">-->
-<!--        <qualifier value="b2"/>-->
-<!--    </bean>-->
 </beans>

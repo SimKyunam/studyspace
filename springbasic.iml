@@ -48,5 +48,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util:8.5.23" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jasper-el:8.5.23" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jsp-api:8.5.23" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-indexer:5.2.9.RELEASE" level="project" />
   </component>
 </module>
