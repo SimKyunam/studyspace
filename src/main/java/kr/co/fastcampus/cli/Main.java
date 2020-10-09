@@ -16,9 +16,6 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         log.info("Hello world!");
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
-        Lifecycle lifecycle = context.getBean(Lifecycle.class);
-        log.info(">> 1: {}", lifecycle.isRunning());
         context.close();
-        log.info(">> 2: {}", lifecycle.isRunning());
     }
 }
