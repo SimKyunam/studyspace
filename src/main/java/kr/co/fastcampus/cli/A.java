@@ -18,21 +18,16 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 public class A  {
-    @Autowired
     private B b;
 
-    @Autowired
-    private ApplicationContext context;
-
-    @Value("${catalog.name}")
-    String properties;
-
-    @PostConstruct
-    void init(){
-        log.error("A post construct");
+    public A(B b) {
+        this.b = b;
     }
 
-    @PreDestroy
+    void init(){
+        log.error("A post construct" + b);
+    }
+
     void destroy(){
         log.error("A pre destroy");
     }

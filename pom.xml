@@ -94,6 +94,11 @@
       <version>5.2.9.RELEASE</version>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+    </dependency>
   </dependencies>
 
   <build>
