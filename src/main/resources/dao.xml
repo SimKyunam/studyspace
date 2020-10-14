@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,10 +12,10 @@
     <context:property-placeholder location="/*.properties" />
     <context:component-scan base-package="kr.co.fastcampus.cli"/>
 
-    <!--
+    &lt;!&ndash;
         [scope] prototype은 new와 같고 default인 singleton은 주소참조
         bean에 ref에 참조해줄때도 같은 기능 의미로 사용 가능
-    -->
+    &ndash;&gt;
     <beans profile="default">
         <bean id="connectionFactory" class="kr.co.fastcampus.cli.ConnectionFactory">
             <constructor-arg name="driverClass" value="org.h2.Driver"/>
@@ -50,4 +51,4 @@
 
         <bean class="kr.co.fastcampus.cli.AppConfig"/>
     </beans>
-</beans>
+</beans>-->

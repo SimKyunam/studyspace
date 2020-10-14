@@ -11,7 +11,9 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
         log.info("Hello world!");
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(AppConfig.class, AppDefaultConfig.class, AppDevConfig.class);
+        context.refresh();
         Dao dao = context.getBean(Dao.class);
         dao.run();
         context.close();

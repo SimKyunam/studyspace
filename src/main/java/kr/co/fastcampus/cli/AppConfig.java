@@ -1,18 +1,18 @@
 package kr.co.fastcampus.cli;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.sql.Connection;
 
 /**
- * Created by mileNote on 2020-10-11
+ * Created by mileNote on 2020-10-14
  * Blog : https://milenote.tistory.com
  * Github : https://github.com/SimKyunam
  */
 @Configuration
-@ComponentScan(basePackageClasses = AppConfig.class)
+@Profile("default | dev")
 public class AppConfig {
     @Bean
     public B b() {
@@ -22,11 +22,6 @@ public class AppConfig {
     @Bean(initMethod = "init", destroyMethod = "destroy")
     public A a(B b) {
         return new A(b);
-    }
-
-    @Bean(initMethod = "init", destroyMethod = "destroy")
-    public ConnectionFactory connectionFactory(){
-        return new ConnectionFactory("org.h2.Driver", "jdbc:h2:mem:test", "sa,", "");
     }
 
     @Bean
