@@ -1,5 +1,6 @@
 package kr.co.fastcampus.cli;
 
+import kr.co.fastcampus.cli.service.MyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,10 +13,11 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         log.info("Hello world!");
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register(AppConfig.class, AppDefaultConfig.class, AppDevConfig.class);
+        context.register(AppConfig.class);
         context.refresh();
-        Dao dao = context.getBean(Dao.class);
-        dao.run();
+        MyService service = context.getBean(MyService.class);
+        service.check();
+
         context.close();
     }
 }
