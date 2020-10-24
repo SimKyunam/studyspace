@@ -1,8 +1,6 @@
 package kr.co.fastcampus.cli.aop;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by mileNote on 2020-10-22
@@ -10,39 +8,10 @@ import org.springframework.aop.framework.ProxyFactory;
  * Github : https://github.com/SimKyunam
  */
 public class Main {
-
     public static void main(String[] args) {
-        ProxyFactory factory = new ProxyFactory(new SimplePojo());
-        factory.addInterface(Pojo.class);
-        factory.addAdvice(new RetryAdvice());
-        factory.setExposeProxy(true);
-        Pojo pojo = (Pojo) factory.getProxy();
-
-        System.out.println(">>>>");
-        pojo.foo();
-        System.out.println(">>>>");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        Service service = context.getBean(Service.class);
+        service.log();
+        context.close();
     }
-}
-
-class RetryAdvice implements MethodInterceptor{
-
-    @Override
-    public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-        System.out.println("before");
-        Object proceed = methodInvocation.proceed();
-        System.out.println("after");
-        return proceed;
-    }
-}
-
-interface Pojo{
-    void foo();
-}
-
-class SimplePojo implements Pojo {
-
-    public void foo() {
-        System.out.println("run foo");
-    }
-
 }
