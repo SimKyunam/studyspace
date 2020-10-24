@@ -2,6 +2,8 @@ package kr.co.fastcampus.cli.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
  * Github : https://github.com/SimKyunam
  */
 @Slf4j
+@Aspect
 public class TransactionBean {
     private Connection connection;
 
@@ -20,6 +23,7 @@ public class TransactionBean {
         this.connection = connection;
     }
 
+    @Around("execution(* kr.co.fastcampus.cli.Dao.insert(..))")
     public Object aroundTransaction(ProceedingJoinPoint pjp) throws SQLException {
         log.error(">>>before aop transaction");
         connection.setAutoCommit(false);
