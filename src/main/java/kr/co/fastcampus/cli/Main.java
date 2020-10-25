@@ -1,9 +1,9 @@
 package kr.co.fastcampus.cli;
 
-import kr.co.fastcampus.cli.aop.TransactionBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -16,7 +16,7 @@ public class Main {
         context.register(TransactionBean.class);
         context.refresh();
 
-        createTable(context.getBean(Connection.class));
+        createTable(context.getBean(DataSource.class).getConnection());
 
         Dao dao = context.getBean(Dao.class);
         dao.insert();

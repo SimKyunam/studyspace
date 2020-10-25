@@ -1,8 +1,9 @@
 package kr.co.fastcampus.cli;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Connection;
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
@@ -12,19 +13,20 @@ import java.sql.SQLException;
  */
 @Slf4j
 public class Dao {
-    private Connection connection;
+    private DataSource dataSource;
 
-    public Dao(Connection connection) {
-        this.connection = connection;
+    public Dao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
+    @Transactional
     public void insert() throws SQLException {
-        var statement = connection.createStatement();
+        var statement = dataSource.getConnection().createStatement();
         statement.executeUpdate("insert into member(username, password) values('simkyunam', '1234')");
     }
 
     public void print() throws SQLException {
-         var statement = connection.createStatement();
+         var statement = dataSource.getConnection().createStatement();
 
         var resultSet = statement.executeQuery("select id, username, password from member");
         while (resultSet.next()) {
