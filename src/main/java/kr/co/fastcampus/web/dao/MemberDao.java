@@ -2,9 +2,10 @@ package kr.co.fastcampus.web.dao;
 
 import kr.co.fastcampus.web.entity.Member;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.SQLException;
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -16,18 +17,23 @@ import java.util.List;
 public class MemberDao {
     private JdbcTemplate jdbcTemplate;
 
+    @PostConstruct
+    void init() {
+        jdbcTemplate.update("create table member(id int auto_increment, username varchar(255) not null, password varchar(255))");
+        jdbcTemplate.update("insert into member(username, password) values('simkyunam', '1234')");
+    }
+
+    @Autowired
     public MemberDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void insert(String username, String password) throws SQLException {
+    public void insert(String username, String password) {
         jdbcTemplate.update("insert into member(username, password) values(?, ?)", username, password);
     }
 
-    public void print() throws SQLException {
-        List<Member> list = jdbcTemplate.query("select id, username, password from member",
+    public List<Member> list() {
+        return jdbcTemplate.query("select id, username, password from member",
                 (resultSet, i) -> new Member(resultSet));
-
-        list.forEach(x -> log.info("Member: "+ x.getUsername() + "/" + x.getPassword()));
     }
 }
