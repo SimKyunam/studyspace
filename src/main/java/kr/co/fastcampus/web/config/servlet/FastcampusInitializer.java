@@ -1,6 +1,7 @@
 package kr.co.fastcampus.web.config.servlet;
 
 import kr.co.fastcampus.web.config.spring.AppConfig;
+import kr.co.fastcampus.web.config.spring.MvcConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -21,6 +22,7 @@ public class FastcampusInitializer implements WebApplicationInitializer {
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(AppConfig.class);
+        rootContext.register(MvcConfig.class);
 
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));

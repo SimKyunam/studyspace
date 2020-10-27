@@ -1,6 +1,6 @@
-package kr.co.fastcampus.cli.dao;
+package kr.co.fastcampus.web.dao;
 
-import kr.co.fastcampus.cli.entity.Member;
+import kr.co.fastcampus.web.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 
