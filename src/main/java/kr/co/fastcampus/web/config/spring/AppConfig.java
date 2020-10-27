@@ -1,4 +1,4 @@
-package kr.co.fastcampus.cli.config;
+package kr.co.fastcampus.web.config.spring;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
