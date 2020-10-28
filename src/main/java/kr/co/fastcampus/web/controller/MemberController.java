@@ -1,6 +1,7 @@
 package kr.co.fastcampus.web.controller;
 
 import kr.co.fastcampus.web.entity.Member;
+import kr.co.fastcampus.web.model.MemberDto;
 import kr.co.fastcampus.web.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,9 @@ public class MemberController {
     }
 
     @RequestMapping("/create")
-    public void create(){
-        memberService.insert("simkyunam", "password");
+    public String create(MemberDto dto){
+        ModelAndView mv = new ModelAndView("index");
+        memberService.insert(dto.getUsername(), dto.getPassword());
+        return "redirect:index";
     }
 }
