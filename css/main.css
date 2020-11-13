@@ -40,3 +40,67 @@
     background: #55a532 linear-gradient(#91dd70, #55ae2e);
   }
   
+  /* INPUT */
+  .input--text {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075); /* .75 아니고 .075 주의 */
+  }
+  .input--text:focus {
+    border-color: #51a7e8 !important; /* header #search 선택자를 덮어쓰기 위해서 사용 */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075), 0 0 5px rgba(81, 167, 232, .5);
+  }
+  /* Vendor prefix(브라우저 업체별 접두어) */
+  .input--text::-webkit-input-placeholder { color: #cacaca; }
+  .input--text:-ms-input-placeholder      { color: #cacaca; }
+  .input--text::-moz-placeholder          { color: #cacaca; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid rgba(0, 0, 0, .75);
+    /* box-shadow: X Y BLUR SPREAD COLOR; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, .75);
+    background: #fff;
+  }
+  header .inner {
+    max-width: 980px;
+    height: 78px;
+    margin: 0 auto;
+  }
+  /* Menu group(Left) */
+header .menu-group {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+header .logo {
+  margin-right: 10px;
+}
+header .logo a {
+  background: url("../img/logo.svg");
+  width: 32px;
+  height: 32px;
+  display: block;
+  text-indent: -9999px; /* 대체 텍스트 */
+}
+header .logo a:hover {
+  background: url("../img/logo_on.svg");
+}
+header .main-menu {
+  display: flex;
+}
+header .main-menu li a {
+  padding: 10px;
+  display: block;
+  color: #3c4146;
+}
+
+header .main-menu li a:hover {
+  color: #4078c0;
+}
+  
