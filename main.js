@@ -1,1 +1,2 @@
-adadada
+<script>
+</script>
