@@ -1,6 +1,12 @@
 package com.company.design;
 
 import com.company.design.adapter.*;
+import com.company.design.aop.AopBrowser;
+import com.company.design.proxy.Browser;
+import com.company.design.proxy.BrowserProxy;
+import com.company.design.proxy.IBrowser;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by mileNote on 2021-05-10
@@ -9,16 +15,35 @@ import com.company.design.adapter.*;
  */
 public class Main {
     public static void main(String[] args) {
-        HairDryer hairDryer = new HairDryer();
-        connect(hairDryer);
+//        Browser browser = new Browser("www.naver.com");
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
 
-        Cleaner cleaner = new Cleaner();
-        Electronic110V adapter = new SocketAdapter(cleaner);
-        connect(adapter);
+//        IBrowser browser = new BrowserProxy("www.naver.com");
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
+//        browser.show();
+        AtomicLong start = new AtomicLong();
+        AtomicLong end = new AtomicLong();
+        IBrowser aopBrowser = new AopBrowser("www.naver.com",
+            () -> {
+                System.out.println("before");
+                start.set(System.currentTimeMillis());
+            },
+            () -> {
+                Long now = System.currentTimeMillis();
+                end.set(now - start.get());
+            }
+         );
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
 
-        AirConditioner airConditioner = new AirConditioner();
-        Electronic110V airAdapter = new SocketAdapter(airConditioner);
-        connect(airAdapter);
+        aopBrowser.show();
+        System.out.println("loading time : " + end.get());
     }
 
     //콘센트
