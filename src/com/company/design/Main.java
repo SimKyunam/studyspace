@@ -6,6 +6,7 @@ import com.company.design.decorator.*;
 import com.company.design.proxy.Browser;
 import com.company.design.proxy.BrowserProxy;
 import com.company.design.proxy.IBrowser;
+import com.company.design.strategy.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -16,17 +17,26 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class Main {
     public static void main(String[] args) {
-        ICar audi = new Audi(1000);
-        audi.showPrice();
+        Encoder encoder = new Encoder();
 
-        ICar audi3 = new A3(audi, "A3");
-        audi3.showPrice();
+        // base 64
+        EncodingStrategy base64 = new Base64Strategy();
 
-        ICar audi4 = new A4(audi, "A4");
-        audi4.showPrice();
+        // normal
+        EncodingStrategy normal = new NormalStrategy();
 
-        ICar audi5 = new A5(audi, "A5");
-        audi5.showPrice();
+        String message = "hello java";
+        encoder.setEncodingStrategy(base64);
+        String base64Result = encoder.getMessage(message);
+        System.out.println(base64Result);
+
+        encoder.setEncodingStrategy(normal);
+        String normalResult = encoder.getMessage(message);
+        System.out.println(normalResult);
+
+        encoder.setEncodingStrategy(new AppendStrategy());
+        String appendResult = encoder.getMessage(message);
+        System.out.println(appendResult);
     }
 
     //콘센트
